@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+n
+{% block cuerpo %}
+    <div class="row"><!-- la fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- columna izquierda-->
+     <h1> mama</h1>
+    <div class="card"> <!--tarjeta-->
+        <div class="card-body">
+            <form action="registrarmateria/" method="POST"> {%csrf_token%}<!--formulario-->
+                <div class="form-group">
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control"
+                    placeholder="Codigo materias" minlenght="6" maxlenght="6" reqired>
+                </div>
+            
+                <div class="form-group py-3">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control"
+                    placeholder="Nombre materias" minlenght="6" maxlenght="6" reqired>
+                </div>
+            
+                <div class="form-group py-2">
+                    <input type="text" id="numCreditos" name="numCreditos" class="form-control"
+                    value="1" min="1" max="9" reqired>
+                    
+                </div>
+            
+                <div class="form-group py-2">
+                 <button type="submit" class="btn btn-primary">guardar</button>
+                </div>
+
+            
+            </form>
+            </div>
+        
+        </div>
+    </div>
+    </div><!-- columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-ig-8 col-xl-4"> <!-- columna derecha-->
+        <h1>papa</h1>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Creditos</th>
+                <th colspan="2">Creditos</th>
+                
+             </tr>
+             </thead>
+             <tbody>
+                {% for m in mismaterias %}
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{m.Codigo}}</td>
+                    <td>{{m.Nombre}}</td>
+                    <td>{{m.Creditos}}</td>
+                    <td><a href="seleccionarmateria/{{m.materias}}" class="btn btn-info">editar</a> </td> <!--falta link-->
+                    <td><a href="borrarmateria/{{m.Codigo}}" class="btn btn-danger">borrar</a> </td> <!--falta link-->
+                </tr>
+                {% endfor %}
+             </tbody>
+            
+          </table>
+    </div> <!-- columna derecha-->
+    
+    </div> <!-- la fila -->
+
+{% endblock %}
